@@ -1,0 +1,35 @@
+1. d
+2. d - mean > median, median=1/2(min+max) < 3
+3. d - experiement study
+4. d - lage chi-sqare value means two variables are not close
+5. b - 1.5*IQR=1.5*(Q3-Q1)= 19.2, lowbond= 37-19.2=17.8, upperbond=49.8+19.2=69
+6. d - median, Q3, Q1, the interquartile range are all resistant to outliers.
+
+
+
+
+
+
+
+
+
+
+7. a: Describe
+
+A Observationsxxxx
+B Sampling Distribution xxxxxx
+
+b:why mean similar but sd are not
+
+The mean is the average of all numbers. Standard deviation is a measure that is used to quantify the amount of variation or 
+dispersion of a set of data values.
+
+The data in Set A has high density around 0-6 and set B is random sampling from set A. That means data values 0-6 have high
+probability to be choosed.    
+
+c. the statistical principal - Central Limit theorem 
+The central limit theorem (CLT) is a statistical theory that states that given a sufficiently large sample size from 
+a population with a finite level of variance, the mean of all samples from the same population will be approximately 
+equal to the mean of the population. Furthermore, all of the samples will follow an approximate normal distribution 
+pattern, with all variances being approximately equal to the variance of the population divided by each sample's size.
+
