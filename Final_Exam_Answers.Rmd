@@ -1,0 +1,167 @@
+---
+title: "DATA 606 Fall 2017 - Final Exam"
+author: "Chunmei Zhu"
+date: "December 19, 2017"
+output: html_document
+---
+
+# Part I
+
+Please put the answers for Part I next to the question number (2pts each):
+
+1.  d
+2.  d - mean > median, median=1/2(min+max) < 3
+3.  d - experiment study
+4.  d - large chi-sqare value means two variables are not close
+5.  b - 1.5*IQR=1.5*(Q3-Q1)= 19.2, lowbond= 37-19.2=17.8, upperbond=49.8+19.2=69
+6.  d - median, Q3, Q1, the interquartile range are all resistant to outliers.
+
+7a. Describe the two distributions (2pts).
+
+Answer: Distribution A is nomal with mean around 5 and have long right thin tail (right skewness but not strong). Its median is more than its mean. Distribution B is nomal with mean at 5 and without skewness but has two fat tails. Its median is very close or equal to mean. 
+
+
+7b. Explain why the means of these two distributions are similar but the standard deviations are not (2 pts).
+
+Answer: The mean is the average of all numbers. Standard deviation is a measure that is used to quantify the amount of variation or dispersion of a set of data values.
+
+The data in Set A has high density at values 0-6 and the set B is random sampling from set A. That means data that values arond 0-6 having high probability to be choosed to set B. what's more, the sample set without biase can refract the population. The mean of any random sampling data set(set B) shoud approximatly equal to the mean of population (set A). 
+
+However, standard deviation (SD) refract the spread of data from mean. If the data in sample set may spread widly then the sd of sampling (B) will be larger then then population (A). The SD of sample set is equal to sqrt(var(x)/(n-1)) which approximate to the SD of population.
+
+
+7c. What is the statistical principal that describes this phenomenon (2 pts)?
+
+Answer: The statistical principal is Central Limit theorem. 
+
+"The central limit theorem (CLT) is a statistical theory that states that given a sufficiently large sample size from 
+a population with a finite level of variance, the mean of all samples from the same population will be approximately 
+equal to the mean of the population. Furthermore, all of the samples will follow an approximate normal distribution 
+pattern, with all variances being approximately equal to the variance of the population divided by each sample's size."
+
+# Part II
+
+Consider the four datasets, each with two columns (x and y), provided below. 
+
+```{r}
+options(digits=2)
+data1 <- data.frame(x=c(10,8,13,9,11,14,6,4,12,7,5),
+					y=c(8.04,6.95,7.58,8.81,8.33,9.96,7.24,4.26,10.84,4.82,5.68))
+data2 <- data.frame(x=c(10,8,13,9,11,14,6,4,12,7,5),
+					y=c(9.14,8.14,8.74,8.77,9.26,8.1,6.13,3.1,9.13,7.26,4.74))
+data3 <- data.frame(x=c(10,8,13,9,11,14,6,4,12,7,5),
+					y=c(7.46,6.77,12.74,7.11,7.81,8.84,6.08,5.39,8.15,6.42,5.73))
+data4 <- data.frame(x=c(8,8,8,8,8,8,8,19,8,8,8),
+					y=c(6.58,5.76,7.71,8.84,8.47,7.04,5.25,12.5,5.56,7.91,6.89))
+```
+
+For each column, calculate (to two decimal places):
+
+#### a. The mean (for x and y separately; 1 pt).
+
+```{r}
+sprintf("%.2f", mean(data1$x))
+sprintf("%.2f", mean(data1$y))
+sprintf("%.2f", mean(data2$x))
+sprintf("%.2f", mean(data2$y))
+sprintf("%.2f", mean(data3$x))
+sprintf("%.2f", mean(data3$y))
+sprintf("%.2f", mean(data4$x))
+sprintf("%.2f", mean(data4$y))
+```
+
+#### b. The median (for x and y separately; 1 pt).
+
+```{r}
+sprintf("%.2f", median(data1$x))
+sprintf("%.2f", median(data1$y))
+sprintf("%.2f", median(data2$x))
+sprintf("%.2f", median(data2$y))
+sprintf("%.2f", median(data3$x))
+sprintf("%.2f", median(data3$y))
+sprintf("%.2f", median(data4$x))
+sprintf("%.2f", median(data4$y))
+```
+
+#### c. The standard deviation (for x and y separately; 1 pt).
+
+```{r}
+sprintf("%.2f", sd(data1$x))
+sprintf("%.2f", sd(data1$y))
+sprintf("%.2f", sd(data2$x))
+sprintf("%.2f", sd(data2$y))
+sprintf("%.2f", sd(data3$x))
+sprintf("%.2f", sd(data3$y))
+sprintf("%.2f", sd(data4$x))
+sprintf("%.2f", sd(data4$y))
+```
+
+#### For each x and y pair, calculate (also to two decimal places; 1 pt):
+
+#### d. The correlation (1 pt).
+
+```{r}
+sprintf("%.2f", cor(data1$x,data1$y))
+sprintf("%.2f", cor(data2$x,data2$y))
+sprintf("%.2f", cor(data3$x,data3$y))
+sprintf("%.2f", cor(data4$x,data4$y))
+```
+
+#### e. Linear regression equation (2 pts).
+
+```{r}
+print(l1 <- lm(y~x, data=data1))  # y = 3.00 +0.50x
+print(l2 <- lm(y~x, data=data2))  # y = 3.00 +0.50x
+print(l3 <- lm(y~x, data=data3))  # y = 3.00 +0.50x
+print(l4 <- lm(y~x, data=data4))  # y = 3.00 +0.50x
+```
+
+#### f. R-Squared (2 pts).
+R-squared is a statistical measure of how close the data are to the fitted regression line. R-squared of each data set is 0.67, which means X={x1,..x11} explained only 67% of Y={y1,...,y11} in the linear regression model. 
+
+```{r}
+rsq <- function(x, y) summary(lm(y~x))$r.squared
+rsq(data1$x, data1$y)
+rsq(data2$x, data2$y)
+rsq(data3$x, data3$y)
+rsq(data4$x, data4$y)
+```
+
+
+#### For each pair, is it appropriate to estimate a linear regression model? Why or why not? Be specific as to why for each pair and include appropriate plots! (4 pts)
+
+Answer: Data1 modle isn't appropriate to estimate a linear regression model. R-squared is 0.67 only. Data points are not close to the line.
+
+
+
+```{r}
+qqnorm(l1$residuals)
+qqline(l1$residuals)
+```
+
+Data2 modle isn't appropriate to estimate a linear regression model. R-squared is 0.67 only. Data points are around the line but not very closer to the line.
+
+```{r}
+qqnorm(l2$residuals)
+qqline(l2$residuals)
+```
+
+Data3 modle is appropriate to estimate a linear regression model. R-squared is 0.67 only but Data points are on the line.
+
+```{r}
+qqnorm(l3$residuals)
+qqline(l3$residuals)
+```
+
+Data4 modle is appropriate to estimate a linear regression model. R-squared is 0.67 only but Data points are very close to the line.
+
+```{r}
+qqnorm(l4$residuals)
+qqline(l4$residuals)
+```
+
+
+#### Explain why it is important to include appropriate visualizations when analyzing data. Include any visualization(s) you create. (2 pts)
+
+Answer: There is a good example above to show why visualizations are important. Four small data sets have same linear regression equations, same R-Squareds,same means, same standard deviations and same correlation. Their medians are little different but it's not to tell how the data points are approriate to a line. The plot graph helps me to find out that data3 and data4 are appropriate to estimate a linear regression model.Data1 and data2 are not.    
+
